@@ -1,16 +1,15 @@
-﻿using ECommerceAppTemplate.DataAccess.Data;
-using ECommerceAppTemplate.Data.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using ECommerceAppTemplate.Data.Models;
 using ECommerceAppTemplate.DataAccess.Repository.Abstract;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using ECommerceAppTemplate.Data.ViewModels;
 using ECommerceAppTemplate.Utility;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 
 namespace ECommerceApp.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
+
     public class CompanyController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

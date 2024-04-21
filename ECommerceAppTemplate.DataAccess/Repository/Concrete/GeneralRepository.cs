@@ -1,12 +1,7 @@
 ﻿using ECommerceAppTemplate.DataAccess.Data;
 using ECommerceAppTemplate.DataAccess.Repository.Abstract;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ECommerceAppTemplate.DataAccess.Repository.Concrete
 {
@@ -59,7 +54,7 @@ namespace ECommerceAppTemplate.DataAccess.Repository.Concrete
         public IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter, string? includeProperties = null)
         {
             IQueryable<T> query = _dbSet;
-           if (filter != null)
+            if (filter != null)
             {
                 query = query.Where(filter);
             }

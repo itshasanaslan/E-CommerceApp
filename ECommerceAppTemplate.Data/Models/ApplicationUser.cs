@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Microsoft.Identity.Client;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -9,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace ECommerceAppTemplate.Data.Models
 {
     //[NotMapped]
-    public class ApplicationUser: IdentityUser
+    public class ApplicationUser : IdentityUser
     {
         [Required]
         public string? Name { get; set; }

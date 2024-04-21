@@ -3,19 +3,19 @@
 #nullable disable
 
 using ECommerceAppTemplate.Data.Models;
+using ECommerceAppTemplate.DataAccess.Repository.Abstract;
+using ECommerceAppTemplate.Utility;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.WebUtilities;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Text.Encodings.Web;
-using ECommerceAppTemplate.Utility;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using ECommerceAppTemplate.DataAccess.Repository.Abstract;
 
 
 namespace ECommerceApp.Web.Areas.Identity.Pages.Account
@@ -166,8 +166,9 @@ namespace ECommerceApp.Web.Areas.Identity.Pages.Account
                 user.State = Input.State;
                 user.PostalCode = Input.PostalCode;
                 user.PhoneNumber = Input.PhoneNumber;
-                if (Input.Role == SD.Role_Company) { 
-                user.CompanyId = Input.CompanyId;
+                if (Input.Role == SD.Role_Company)
+                {
+                    user.CompanyId = Input.CompanyId;
                 }
 
 

@@ -1,17 +1,16 @@
-﻿using ECommerceAppTemplate.DataAccess.Data;
-using ECommerceAppTemplate.Data.Models;
-using Microsoft.AspNetCore.Mvc;
-using ECommerceAppTemplate.DataAccess.Repository.Abstract;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using ECommerceAppTemplate.Data.Models;
 using ECommerceAppTemplate.Data.ViewModels;
+using ECommerceAppTemplate.DataAccess.Repository.Abstract;
 using ECommerceAppTemplate.Utility;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 
 namespace ECommerceApp.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
-   // [Authorize(Roles = SD.Role_Admin)]
+    [Authorize(Roles = SD.Role_Admin)]
 
     public class ProductController : Controller
     {
@@ -26,7 +25,7 @@ namespace ECommerceApp.Web.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-            List<Product> objProductList = _unitOfWork.ProductRepository.GetAll(includeProperties:"Category").ToList();
+            List<Product> objProductList = _unitOfWork.ProductRepository.GetAll(includeProperties: "Category").ToList();
             return View(objProductList);
         }
 
@@ -97,7 +96,7 @@ namespace ECommerceApp.Web.Areas.Admin.Controllers
                 }
 
                 _unitOfWork.Save();
-                TempData["success"] = "Product "  + (update == false ? "created" : "updated") +" successfully";
+                TempData["success"] = "Product " + (update == false ? "created" : "updated") + " successfully";
                 return RedirectToAction("Index");
             }
             else
@@ -110,14 +109,15 @@ namespace ECommerceApp.Web.Areas.Admin.Controllers
                 return View(productVM);
             }
         }
-     
 
-     
+
+
         #region API CALLS
         [HttpGet]
-        public IActionResult GetAll() {
+        public IActionResult GetAll()
+        {
             List<Product> objProductList = _unitOfWork.ProductRepository.GetAll(includeProperties: "Category").ToList();
-            return Json(new {data = objProductList});
+            return Json(new { data = objProductList });
         }
 
         [HttpDelete]

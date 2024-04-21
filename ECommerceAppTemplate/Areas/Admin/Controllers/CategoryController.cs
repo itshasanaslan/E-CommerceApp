@@ -1,8 +1,8 @@
 ﻿using ECommerceAppTemplate.Data.Models;
-using Microsoft.AspNetCore.Mvc;
 using ECommerceAppTemplate.DataAccess.Repository.Abstract;
-using Microsoft.AspNetCore.Authorization;
 using ECommerceAppTemplate.Utility;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 
 namespace ECommerceApp.Web.Areas.Admin.Controllers
