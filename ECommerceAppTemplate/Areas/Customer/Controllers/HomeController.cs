@@ -2,7 +2,6 @@ using ECommerceAppTemplate.Data.Models;
 using ECommerceAppTemplate.DataAccess.Repository.Abstract;
 using ECommerceAppTemplate.Utility;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Security.Claims;
@@ -67,7 +66,7 @@ namespace ECommerceApp.Web.Areas.Customer.Controllers
 
             _unitOfWork.ShoppingCartRepository.Add(shoppingCart);
             TempData["success"] = "Cart updated";
-         
+
 
             return RedirectToAction(nameof(Index));
         }

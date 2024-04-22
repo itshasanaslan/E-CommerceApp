@@ -200,7 +200,7 @@ namespace ECommerceApp.Web.Areas.Customer.Controllers
             cartFromDb.Count += 1;
             _unitOfWork.ShoppingCartRepository.Update(cartFromDb);
             _unitOfWork.Save();
-         
+
             return RedirectToAction(nameof(Index));
         }
 
