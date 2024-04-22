@@ -41,7 +41,7 @@ namespace ECommerceAppTemplate.Data.Models
 
         public Category Category { get; set; }
         [ValidateNever]
+        public List<ProductImage> ProductImages { get; set; }
 
-        public string ImageUrl { get; set; }
     }
 }
