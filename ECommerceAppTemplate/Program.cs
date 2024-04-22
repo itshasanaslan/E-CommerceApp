@@ -1,4 +1,5 @@
 using ECommerceAppTemplate.DataAccess.Data;
+using ECommerceAppTemplate.DataAccess.DbInitializer;
 using ECommerceAppTemplate.DataAccess.Repository.Abstract;
 using ECommerceAppTemplate.DataAccess.Repository.Concrete;
 using ECommerceAppTemplate.Utility;
@@ -28,8 +29,15 @@ builder.Services.ConfigureApplicationCookie(options =>
 });
 
 
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(100);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 
-
+builder.Services.AddScoped<IDbInitializer, DbInitializer>();
 builder.Services.AddRazorPages();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IEmailSender, EmailSender>();
@@ -49,6 +57,8 @@ StripeConfiguration.ApiKey = builder.Configuration.GetSection("Stripe:SecretKey"
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
+SeedDatabase();
+app.UseSession();
 app.MapRazorPages();
 app.MapControllerRoute(
     name: "default",
@@ -57,3 +67,12 @@ app.MapControllerRoute(
 app.Run();
 
 
+void SeedDatabase()
+{
+    using (var scope = app.Services.CreateScope())
+    {
+        var dbInitializer = scope.ServiceProvider.GetRequiredService<IDbInitializer>();
+        dbInitializer.Initialize();
+    }
+
+}
